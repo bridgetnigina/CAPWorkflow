@@ -1,0 +1,41 @@
+GET http://localhost:4004/catalog/retriveUploadID(uploadID='1025')
+Content-Type: application/json;odata.metadata=minimal
+
+#######
+
+GET http://localhost:4004/catalog/getUserInfo()
+Content-Type: application/json;odata.metadata=minimal
+##########
+
+POST http://localhost:4004/catalog/sendDataToUpload
+Content-Type: application/json;odata.metadata=minimal
+
+{
+"uploadedBy": "parthibaraja.vijayan@accenture.com",
+"payload":[
+ {
+   "Personnel_Number": 36089477,
+   "Wage_Type": 4416,
+   "Wagetype_Description": "Referral Bonus",
+   "Amount": "5500",
+   "Currency": "PHP",
+   "WBS": "AJHUD061"
+ },
+ {
+   "Personnel_Number": 84894597,
+   "Wage_Type": 3216,
+   "Wagetype_Description": "Referral Bonus",
+   "Amount": "2500",
+   "Currency": "PHP",
+   "WBS": "AJHUD261"
+ },
+ {
+   "Personnel_Number": 19894547,
+   "Wage_Type": 3916,
+   "Wagetype_Description": "Referral Bonus",
+   "Amount": "3500",
+   "Currency": "PHP",
+   "WBS": "AJHUD212"
+ }
+]
+    }

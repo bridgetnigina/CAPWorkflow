@@ -1,0 +1,261 @@
+{
+  "namespace": "app.deductions",
+  "definitions": {
+    "app.deductions.Deductions_Upload": {
+      "kind": "entity",
+      "elements": {
+        "personnelNumber": {
+          "type": "cds.Integer"
+        },
+        "wageType": {
+          "type": "cds.Integer"
+        },
+        "wageTypeDescription": {
+          "type": "cds.String",
+          "length": 140
+        },
+        "amount": {
+          "type": "cds.Integer"
+        },
+        "currency": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "wbs": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "uploadID": {
+          "type": "cds.Association",
+          "target": "app.deductions.Deductions_History",
+          "keys": [
+            {
+              "ref": [
+                "uploadID"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "app.deductions.Deductions_History": {
+      "kind": "entity",
+      "elements": {
+        "uploadID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "uploadedOn": {
+          "type": "cds.DateTime"
+        },
+        "uploadedBy": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "deductionsUpload": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "app.deductions.Deductions_Upload",
+          "on": [
+            {
+              "ref": [
+                "deductionsUpload",
+                "uploadID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "srv/service.cds",
+      "kind": "service"
+    },
+    "CatalogService.Deductions_Upload": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.deductions.Deductions_Upload"
+          ]
+        }
+      },
+      "elements": {
+        "personnelNumber": {
+          "type": "cds.Integer"
+        },
+        "wageType": {
+          "type": "cds.Integer"
+        },
+        "wageTypeDescription": {
+          "type": "cds.String",
+          "length": 140
+        },
+        "amount": {
+          "type": "cds.Integer"
+        },
+        "currency": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "wbs": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "uploadID": {
+          "type": "cds.Association",
+          "target": "CatalogService.Deductions_History",
+          "keys": [
+            {
+              "ref": [
+                "uploadID"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CatalogService.Deductions_History": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.deductions.Deductions_History"
+          ]
+        }
+      },
+      "elements": {
+        "uploadID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "uploadedOn": {
+          "type": "cds.DateTime"
+        },
+        "uploadedBy": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "deductionsUpload": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CatalogService.Deductions_Upload",
+          "on": [
+            {
+              "ref": [
+                "deductionsUpload",
+                "uploadID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CatalogService.uploadPayload": {
+      "kind": "type",
+      "elements": {
+        "Personnel_Number": {
+          "type": "cds.Integer"
+        },
+        "Wage_Type": {
+          "type": "cds.Integer"
+        },
+        "Wagetype_Description": {
+          "type": "cds.String"
+        },
+        "Amount": {
+          "type": "cds.String"
+        },
+        "Currency": {
+          "type": "cds.String"
+        },
+        "WBS": {
+          "type": "cds.String"
+        },
+        "uploadedBy": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService.response": {
+      "kind": "type",
+      "elements": {
+        "data": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService.responseData": {
+      "kind": "type",
+      "elements": {
+        "data": {
+          "items": {
+            "type": "cds.String"
+          }
+        }
+      }
+    },
+    "CatalogService.retriveUploadID": {
+      "kind": "function",
+      "params": {
+        "uploadID": {
+          "type": "cds.String"
+        }
+      },
+      "returns": {
+        "type": "CatalogService.response"
+      }
+    },
+    "CatalogService.getUserInfo": {
+      "kind": "function",
+      "returns": {
+        "type": "CatalogService.response"
+      }
+    },
+    "CatalogService.sendDataToUpload": {
+      "kind": "action",
+      "params": {
+        "uploadedBy": {
+          "type": "cds.String"
+        },
+        "payload": {
+          "items": {
+            "type": "CatalogService.uploadPayload"
+          }
+        }
+      },
+      "returns": {
+        "type": "CatalogService.response"
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.11.2",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

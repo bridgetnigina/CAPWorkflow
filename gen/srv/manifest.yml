@@ -1,0 +1,9 @@
+---
+applications:
+  - name: Emp_Deductions-srv
+    path: .
+    memory: 256M
+    buildpacks:
+      - nodejs_buildpack
+    services:
+      - Emp_Deductions-db
