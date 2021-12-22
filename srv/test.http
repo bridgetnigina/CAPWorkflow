@@ -1,4 +1,4 @@
-GET http://localhost:4004/catalog/retriveUploadID(uploadID='1025')
+GET http://localhost:4004/catalog/retriveUploadID(uploadID='1001')
 Content-Type: application/json;odata.metadata=minimal
 
 #######

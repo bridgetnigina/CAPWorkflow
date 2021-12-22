@@ -1,63 +1,63 @@
 {
-    "name": "Emp_Deductions",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^5",
-        "@sap/cds-odata-v2-adapter-proxy": "^1.7.6",
-        "@sap/hana-client": "^2.10.20",
-        "@sap/xsenv": "^3.1.1",
-        "@sap/xssec": "^3.2.11",
-        "axios": "^0.24.0",
-        "express": "^4",
-        "hdb": "^0.18.3",
-        "node-datetime": "2.1.2",
-        "passport": "^0.5.1"
+  "name": "Emp_Deductions",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.7.6",
+    "@sap/hana-client": "^2.10.20",
+    "@sap/xsenv": "^3.1.1",
+    "@sap/xssec": "^3.2.11",
+    "axios": "^0.24.0",
+    "express": "^4",
+    "hdb": "^0.18.3",
+    "node-datetime": "2.1.2",
+    "passport": "^0.5.1"
+  },
+  "devDependencies": {
+    "@sap/hdi-deploy": "4.2.3",
+    "@sap/ux-specification": "^1.90.15",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
     },
-    "devDependencies": {
-        "@sap/hdi-deploy": "4.2.3",
-        "@sap/ux-specification": "^1.90.15",
-        "sqlite3": "^5.0.2"
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
     },
-    "scripts": {
-        "start": "cds run"
-    },
-    "eslintConfig": {
-        "extends": "eslint:recommended",
-        "env": {
-            "es2020": true,
-            "node": true,
-            "jest": true,
-            "mocha": true
-        },
-        "globals": {
-            "SELECT": true,
-            "INSERT": true,
-            "UPDATE": true,
-            "DELETE": true,
-            "CREATE": true,
-            "DROP": true,
-            "CDL": true,
-            "CQL": true,
-            "CXL": true,
-            "cds": true
-        },
-        "rules": {
-            "no-console": "off",
-            "require-atomic-updates": "off"
-        }
-    },
-    "cds": {
-        "requires": {
-            "db": {
-                "kind": "hana"
-            }
-        },
-        "hana": {
-            "deploy-format": "hdbtable"
-        }
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
     }
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  }
 }
